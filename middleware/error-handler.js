@@ -7,11 +7,11 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   }
  // if (err instanceof CustomAPIError) {
    // return res.status(err.statusCode).json({ msg: err.message })
-  if (err.name === validationError){
-    console.log(Object.values(err.errors))
-customError.msg = Object.values(err.errors).map((item) => item.message). join(',')
-customError.msg.statusCode = 400
-  }
+  //if (err.name === validationError){
+    //console.log(Object.values(err.errors))
+//customError.msg = Object.values(err.errors).map((item) => item.message). join(',')
+//customError.msg.statusCode = 400
+  //}
   if (err.name === 'CastError'){
     customError.msg = `no item found with id: ${err.value}`
     customError.statusCode = 404
@@ -21,7 +21,7 @@ customError.msg.statusCode = 400
     customError.statusCode = 400
   }
   //return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({err})
-  return res.status(StatusCodes.customError.statusCode).json({ msg: customError.msg })
+  return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
 module.exports = errorHandlerMiddleware

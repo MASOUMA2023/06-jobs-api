@@ -46,7 +46,7 @@ const job = await Job.create(req.body)
     if (!job){
         throw new NotFoundError(`No job with id ${jobId}`
         )}
-            res.status(StatusCodes.OK).send()
+            res.status(StatusCodes.OK).json({ msg: "The entry was deleted." });
 }
 module.exports={
     getAllJobs,
